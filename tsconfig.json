@@ -9,6 +9,15 @@
     "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "alwaysShowRuleFailuresAsWarnings": false,
+        "ignoreDefinitionFiles": true,
+        "configFile": "../tslint.json",
+        "suppressWhileTypeErrorsPresent": false
+      }
+    ],
     "importHelpers": true,
     "target": "es2015",
     "typeRoots": [
