@@ -1,0 +1,15 @@
+<img
+  width="500"
+  alt="Star Wars Logo"
+  src="https://www.freepnglogos.com/uploads/star-wars-logo-3.png"
+/>
+<label>email</label>
+<input class="login-form__input" name="email" [(ngModel)]="credentials.email" />
+<label>password</label>
+<input
+  class="login-form__input"
+  type="password"
+  name="password"
+  [(ngModel)]="credentials.password"
+/>
+<button class="login-form__btn" (click)="submit(credentials)">sign in</button>

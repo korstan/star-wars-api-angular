@@ -1,0 +1,30 @@
+:host {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.details-box {
+  width: 50%;
+}
+
+button.expand-button {
+  display: inline-flex;
+  height: 20px;
+  text-align: center;
+  padding: 0px 3px;
+  line-height: 15px;
+  font-size: 18px;
+  border-radius: 15%;
+  color: #fadb03;
+  background: black;
+  border: 2px solid #fadb03;
+  cursor: pointer;
+}
+
+.details-box p {
+  border-bottom: 2px dashed #e8e9eb;
+  padding: 10px 5px;
+}

@@ -1,0 +1,21 @@
+<h2 *ngIf="film$ | async as film">
+  Episode {{ film.episodeId }}: {{ film.title }}
+</h2>
+<div class="details-box">
+  <p *ngFor="let detail of details$ | async">{{ detail }}</p>
+  <span
+    ><button (click)="showCharacters = !showCharacters" class="expand-button">
+      +
+    </button>
+    Characters</span
+  >
+  <div *ngIf="showCharacters" class="characters-list">
+    <ol>
+      <a *ngFor="let character of characters$ | async"
+      [routerLink]="['/characters', character.databaseId]"
+      routerLinkActive="active">
+        <li>{{ character.name }}</li>
+      </a>
+    </ol>
+  </div>
+</div>

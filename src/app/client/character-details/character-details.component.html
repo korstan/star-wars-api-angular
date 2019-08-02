@@ -1,0 +1,6 @@
+<h2 *ngIf="character$ | async as character">
+  {{ character.name }}
+</h2>
+<div class="details-box">
+  <p *ngFor="let detail of details$ | async">{{ detail }}</p>
+</div>

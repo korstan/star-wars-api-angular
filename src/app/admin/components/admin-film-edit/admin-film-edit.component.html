@@ -1,0 +1,56 @@
+<h3 class="admin-sign">EDIT</h3>
+<div class="details-wrapper">
+  <form
+    *ngIf="film$ | async as film"
+    class="details-form"
+    #filmForm="ngForm"
+    (ngSubmit)="sendChanges(film)"
+  >
+    <label for="details-input__title">
+      Title
+    </label>
+    <input
+      id="details-input__title"
+      placeholder="Title"
+      name="title"
+      [(ngModel)]="film.title"
+    />
+    <label for="details-input__director">
+      Director
+    </label>
+    <input
+      id="details-input__director"
+      placeholder="Director"
+      name="director"
+      [(ngModel)]="film.director"
+    />
+    <label for="details-input__episode">
+      Episode
+    </label>
+    <input
+      id="details-input__episode"
+      placeholder="Episode"
+      name="episodeId"
+      [(ngModel)]="film.episodeId"
+    />
+    <label for="details-input__release">
+      Release date
+    </label>
+    <input
+      id="details-input__release"
+      placeholder="Release date"
+      name="releaseDate"
+      [(ngModel)]="film.releaseDate"
+    />
+    <label for="details-input__crawl">
+      Opening crawl
+    </label>
+    <textarea
+      id="details-input__crawl"
+      placeholder="Opening crawl"
+      name="openingCrawl"
+      [(ngModel)]="film.openingCrawl"
+    ></textarea>
+    <button type="submit">Save</button>
+  </form>
+</div>

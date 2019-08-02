@@ -1,0 +1,21 @@
+<h2 class="admin-sign">ADMIN ACCESS</h2>
+<h2>Films</h2>
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let header of tableHeaders">{{ header }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let film of films$ | async"
+      [routerLink]="[film.databaseId]"
+      routerLinkActive="active"
+    >
+      <td>{{ film.episodeId }}</td>
+      <td>{{ film.title }}</td>
+      <td>{{ film.releaseDate }}</td>
+      <td>{{ film.director }}</td>
+    </tr>
+  </tbody>
+</table>
