@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Credentials } from '../../models/credentials';
 import { AuthResponseDto } from '../dto/auth-response-dto/auth-response-dto';
 import { LocalStorageService } from '../local-storage/local-storage.service';
+import { RefreshResponseDto } from '../dto/refresh-response-dto/refresh-response-dto';
 
 /**
  * Class with functions required for users authentification
@@ -39,6 +40,26 @@ export class AuthService {
       }),
       mapTo(null),
     );
+  }
+  /**
+   * Refresh token function. Sends POST-request, returns fresh ID-token, fresh refresh token and its expiration time span.
+   */
+  public refreshToken(): Observable<RefreshResponseDto> {
+    const body = {
+      grant_type: 'refresh_token',
+      refresh_token: this.localStorageService.getRefreshToken(),
+    };
+    return this.http
+      .post<RefreshResponseDto>(environment.refreshTokenUrl, body)
+      .pipe(
+        tap(refreshResponseDto => {
+          this.localStorageService.setIdToken(refreshResponseDto.id_token);
+          this.localStorageService.setRefreshToken(
+            refreshResponseDto.refresh_token,
+          );
+        }),
+        mapTo(null),
+      );
   }
   /**
    * Return true if user is authenticated

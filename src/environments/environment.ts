@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   signInUrl: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword',
+  refreshTokenUrl: 'https://securetoken.googleapis.com/v1/token',
   apiKey: '',
   dbUrl: '',
   adminEmail: '',

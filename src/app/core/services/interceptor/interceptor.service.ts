@@ -2,7 +2,7 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
-  HttpRequest,
+  HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ import { LocalStorageService } from '../local-storage/local-storage.service';
  * Update it every time when new HTTP requests appear in app
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthFetchInterceptor implements HttpInterceptor {
   constructor(private localStorageService: LocalStorageService) {}
@@ -27,19 +27,22 @@ export class AuthFetchInterceptor implements HttpInterceptor {
    */
   public intercept(
     req: HttpRequest<any>,
-    next: HttpHandler,
+    next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // Works when accessing database, adds auth idToken to a query
     if (req.url.includes(environment.dbUrl)) {
       const paramReq = req.clone({
-        params: req.params.set('auth', this.localStorageService.getIdToken()),
+        params: req.params.set('auth', this.localStorageService.getIdToken())
       });
       return next.handle(paramReq);
     }
-    // Works when signing in, adds API Token (key) to a query
-    if (req.url.includes(environment.signInUrl)) {
+    // Works when signing in or refreshing token. Adds API Token (key) to a query
+    if (
+      req.url.includes(environment.signInUrl) ||
+      req.url.includes(environment.refreshTokenUrl)
+    ) {
       const paramReq = req.clone({
-        params: req.params.set('key', environment.apiKey),
+        params: req.params.set('key', environment.apiKey)
       });
       return next.handle(paramReq);
     }
